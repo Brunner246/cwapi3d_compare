@@ -1,21 +1,15 @@
 import ast
-import os
-
 import attribute_controller as ac
-
+import os
 import sys
-sys.path.append('D:\\Python\\PycharmProjects\\cwapi3d_compare\\Lib\\site-packages')
+sys.path.append(os.getenv('PACKAGE_PATH'))
+sys.path.append(os.getenv('WORKING_DIR'))
 
-from dotenv import load_dotenv
+import stub_laod
 
 if __name__ == '__main__':
 
-    load_dotenv('D:\\Python\\cwapi3d_compare\\.env')
-
-    path = os.getenv('PACKAGE_PATH')
-    path += '\\attribute_controller\\__init__.pyi'
-    with open(path) as f:
-        module = ast.parse(f.read())
+    module = stub_laod.load_module('\\attribute_controller\\__init__.pyi')
 
     cwapi3d_package = [(node.name, ast.unparse(node.args))
                        for node in module.body if isinstance(node, ast.FunctionDef)]
