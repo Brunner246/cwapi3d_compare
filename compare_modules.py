@@ -10,6 +10,7 @@ sys.path.append('D:\\Python\\PycharmProjects\\cwapi3d_compare\\Lib\\site-package
 
 from dotenv import load_dotenv
 
+# set path to .env file
 load_dotenv('D:\\Python\\cwapi3d_compare\\.env')
 
 sys.path.append(os.getenv('WORKING_DIR'))
@@ -28,8 +29,8 @@ if __name__ == '__main__':
 
     module_element = stub_laod.load_module('\\element_controller\\__init__.pyi')
 
-    difference_element = stub_laod.get_function_difference(module_element, ec)
-    for function_name in difference_element:
+    difference = stub_laod.get_function_difference(module_element, ec)
+    for function_name in difference:
         print(f"Missing function name: {function_name}")
 
 
